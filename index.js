@@ -7,9 +7,9 @@ document.querySelector("button").addEventListener("click", () => {
 
     console.log(d1, m1, y1, typeof d1);
 
-    let diaAtual = new Date().getDate();
+    let diaAtual = `${new Date().getDate()}`.padStart(2, 0);
 
-    let mesAtual = new Date().getMonth() + 1;
+    let mesAtual = `${new Date().getMonth() + 1}`.padStart(2, 0);
 
     let anoAtual = new Date().getFullYear();
 
@@ -37,7 +37,14 @@ document.querySelector("button").addEventListener("click", () => {
         yearsOld--;
     }
 
-    document.querySelector(
-        ".resultado"
-    ).innerHTML = `You are ${yearsOld} years old, ${monthsOld} months and ${daysOld} days.`;
+    document.querySelector(".resultado").innerHTML = `Você tem ${
+        yearsOld == 1 ? `${yearsOld} ano` : `${yearsOld} anos`
+    }, ${monthsOld == 1 ? `${monthsOld} mês` : `${monthsOld} meses`} e ${
+        daysOld == 1 ? `${daysOld} dia` : `${daysOld} dias`
+    }.`;
 });
+
+let today = new Date();
+let formattedDate = today.toISOString().split("T")[0];
+
+document.querySelector("input").max = formattedDate;
